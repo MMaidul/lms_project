@@ -2,10 +2,10 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Schema\ForeignKeyDefinition;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -13,17 +13,17 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('exams', function (Blueprint $table) {
+        Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('course_id');
-            $table->text('description');
+            $table->dateTime('due_date');
+            $table->dateTime('paid_date');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
             $table
-                ->foreign('couse_id')
+                ->foreign('user_id')
                 ->references('id')
-                ->on('courses')
+                ->on('users')
                 ->onDelete('cascade');
         });
     }
@@ -35,6 +35,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('exams');
+        Schema::dropIfExists('invoices');
     }
 };

@@ -12,34 +12,21 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('notes', function (Blueprint $table) {
+        Schema::create('attendences', function (Blueprint $table) {
             $table->id();
-            $table->text('descpription');
-            $table->unsignedBigInteger('curriculam_id');
-            $table->unsignedBigInteger('exam_id');
+            $table->unsignedBigInteger('curriculumn_id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('lead_id');
             $table->timestamps();
 
             $table
-                ->foreign('curriculam_id')
+                ->foreign('curriculumn_id')
                 ->references('id')
-                ->on('curriculams')
-                ->onDelete('cascade');
-            $table
-                ->foreign('exam_id')
-                ->references('id')
-                ->on('exams')
+                ->on('curriculumns')
                 ->onDelete('cascade');
             $table
                 ->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onDelete('cascade');
-            $table
-                ->foreign('lead_id')
-                ->references('id')
-                ->on('leads')
                 ->onDelete('cascade');
         });
     }
@@ -51,6 +38,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('notes');
+        Schema::dropIfExists('attendences');
     }
 };

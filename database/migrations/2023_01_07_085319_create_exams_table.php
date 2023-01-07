@@ -12,17 +12,17 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('invoices', function (Blueprint $table) {
+        Schema::create('exams', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('due_date');
-            $table->dateTime('paid_date');
-            $table->unsignedBigInteger('user_id');
+            $table->string('name');
+            $table->unsignedBigInteger('curriculumn_id');
+            $table->text('description');
             $table->timestamps();
 
             $table
-                ->foreign('user_id')
+                ->foreign('curriculumn_id')
                 ->references('id')
-                ->on('users')
+                ->on('curriculumns')
                 ->onDelete('cascade');
         });
     }
@@ -34,6 +34,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('invoices');
+        Schema::dropIfExists('exams');
     }
 };

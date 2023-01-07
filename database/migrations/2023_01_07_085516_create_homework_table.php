@@ -16,19 +16,19 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('desciption');
-            $table->unsignedBigInteger('curriculam_id')->default(0);
+            $table->unsignedBigInteger('curriculumn_id')->default(0);
             $table->unsignedBigInteger('exam_id')->default(0);
-            $table->unsignedBigInteger('user');
+            $table->unsignedBigInteger('user_id');
             $table->string('link');
             $table->timestamps();
 
             $table
-                ->foreign('curriculam_id')
+                ->foreign('curriculumn_id')
                 ->references('id')
-                ->on('curriculams')
+                ->on('curriculumns')
                 ->onDelete('cascade');
             $table
-                ->foreign('user_id')
+                ->foreign('exam_id')
                 ->references('id')
                 ->on('exams')
                 ->onDelete('cascade');
