@@ -17,7 +17,7 @@ class CurriculumnFactory extends Factory
     public function definition()
     {
         return [
-            'number' => $this->faker->numberBetween(1, 10),
+            'name' => $this->faker->sentence(5),
             'course_id' => 1,
         ];
     }

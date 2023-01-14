@@ -21,12 +21,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        $user = new User();
-        $user->name = 'Super Admin';
-        $user->email = 'super@admin.com';
-        $user->password = bcrypt('password');
-        $user->save();
+        $user = User::create([
+            'name' => 'Super Admin',
+            'email' => 'Superadmin@lms.test',
+            'password' => bcrypt('password'),
+        ]);
 
         $role = Role::create([
             'name' => 'Super Admin',
@@ -40,6 +39,18 @@ class DatabaseSeeder extends Seeder
         $permission->assignRole($role);
 
         $user->assignRole($role);
+
+        $communicationRole = Role::create([
+            'name' => 'Communication',
+        ]);
+
+        $user = User::create([
+            'name' => 'Comminucation Team',
+            'email' => 'communication@lms.test',
+            'password' => bcrypt('password'),
+        ]);
+
+        $user->assignRole($communicationRole);
 
         Lead::factory()
             ->count(100)
