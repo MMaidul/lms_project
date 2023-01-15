@@ -36,6 +36,11 @@ class DatabaseSeeder extends Seeder
             'Teacher',
             'teacher@lms.test'
         );
+        $teacher = $this->create_user_with_role(
+            'Leads',
+            'Leads',
+            'leads@lms.test'
+        );
 
         Lead::factory()
             ->count(100)
