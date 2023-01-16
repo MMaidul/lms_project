@@ -16,11 +16,13 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                @can('lead-management')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('lead.index')" :active="request()->routeIs('lead')">
                         {{ __('Leads') }}
                     </x-nav-link>
                 </div>
+                @endcan
             </div>
 
             <!-- Settings Dropdown -->

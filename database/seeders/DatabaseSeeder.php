@@ -21,6 +21,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $defaultPermissions = ['lead-management'];
+        foreach ($defaultPermissions as $permission) {
+            Permission::create(['name' => $permission]);
+        }
+
         $this->create_user_with_role(
             'Super Admin',
             'Super Admin',
@@ -72,11 +77,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         if ($type === 'Super Admin') {
-            $permission = Permission::create([
-                'name' => 'create-admin',
-            ]);
-
-            $role->givePermissionTo($permission);
+            $role->givePermissionTo(Permission::all());
+        } elseif ($type === 'Leads') {
+            $role->givePermissionTo('lead-management');
         }
         $user->assignRole($role);
         return $user;
